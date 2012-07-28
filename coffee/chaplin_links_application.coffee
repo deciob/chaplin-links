@@ -1,13 +1,15 @@
 define [
   'chaplin'
   'views/layout'
+  'controllers/head_nav_controller'
+  'controllers/tags_sidebar_controller'
   'routes'
-], (Chaplin, Layout, routes) ->
+], (Chaplin, Layout, HeadNavController, TagsSidebarController, routes) ->
   'use strict'
 
   # The application object
   # Choose a meaningful name for your application
-  class HelloWorldApplication extends Chaplin.Application
+  class LinksApplication extends Chaplin.Application
 
     # Set your application name here so the document title is set to
     # “Controller title – Site title” (see Layout#adjustTitle)
@@ -52,6 +54,8 @@ define [
       # and views which are needed the whole time, for example header, footer
       # or navigation views.
       # e.g. new NavigationController()
+      new HeadNavController()
+      new TagsSidebarController()
 
     # Create additional mediator properties
     # -------------------------------------

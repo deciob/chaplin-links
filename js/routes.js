@@ -3,6 +3,7 @@
 define(function() {
   'use strict';
   return function(match) {
-    return match('', 'helloWorld#show');
+    match('', 'saveLinks#show');
+    return match('read-links', 'readLinks#show');
   };
 });
