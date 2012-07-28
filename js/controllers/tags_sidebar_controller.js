@@ -2,7 +2,7 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['chaplin', 'models/tag', 'views/tags_sidebar_view'], function(Chaplin, Tag, TagsSidebarView) {
+define(['chaplin', 'models/tags', 'views/tags_sidebar_view'], function(Chaplin, Tags, TagsSidebarView) {
   'use strict';
 
   var TagsSidebarController;
@@ -17,6 +17,7 @@ define(['chaplin', 'models/tag', 'views/tags_sidebar_view'], function(Chaplin, T
     TagsSidebarController.prototype.title = 'Tags sidebar';
 
     TagsSidebarController.prototype.initialize = function() {
+      this.collection = new Tags();
       return this.show();
     };
 
@@ -25,9 +26,8 @@ define(['chaplin', 'models/tag', 'views/tags_sidebar_view'], function(Chaplin, T
     };
 
     TagsSidebarController.prototype.show = function(params) {
-      this.model = new Tag();
       return this.view = new TagsSidebarView({
-        model: this.model
+        collection: this.collection
       });
     };
 

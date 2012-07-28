@@ -1,8 +1,8 @@
 define [
   'chaplin'
-  'models/tag'
+  'models/tags'
   'views/tags_sidebar_view'
-], (Chaplin, Tag, TagsSidebarView) ->
+], (Chaplin, Tags, TagsSidebarView) ->
   'use strict'
 
   class TagsSidebarController extends Chaplin.Controller
@@ -10,6 +10,7 @@ define [
     title: 'Tags sidebar'
 
     initialize: ->
+      @collection = new Tags()
       @show()
 
     historyURL: (params) ->
@@ -17,5 +18,4 @@ define [
 
     show: (params) ->
       #console.debug 'HelloWorldController#show'
-      @model = new Tag()
-      @view = new TagsSidebarView model: @model
+      @view = new TagsSidebarView collection: @collection

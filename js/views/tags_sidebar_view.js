@@ -2,7 +2,7 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['views/base/view', 'text!templates/tags_sidebar.hbs'], function(View, template) {
+define(['views/base/collection_view', 'views/tag_view', 'models/tag', 'text!templates/tags_sidebar.hbs'], function(CollectionView, TagView, Tag, template) {
   'use strict';
 
   var TagsSidebarView;
@@ -20,11 +20,40 @@ define(['views/base/view', 'text!templates/tags_sidebar.hbs'], function(View, te
 
     TagsSidebarView.prototype.className = 'sidebar';
 
+    TagsSidebarView.prototype.tagName = 'div';
+
+    TagsSidebarView.prototype.id = 'tag-list';
+
+    TagsSidebarView.prototype.listSelector = 'ol';
+
     TagsSidebarView.prototype.container = '#tags-section';
 
-    TagsSidebarView.prototype.autoRender = true;
+    TagsSidebarView.prototype.initialize = function() {
+      TagsSidebarView.__super__.initialize.apply(this, arguments);
+      return this.subscribeEvent('tags:add', this.addTags);
+    };
+
+    TagsSidebarView.prototype.addTags = function(tag_list) {
+      var name, tag, _i, _len, _results;
+      _results = [];
+      for (_i = 0, _len = tag_list.length; _i < _len; _i++) {
+        name = tag_list[_i];
+        tag = new Tag({
+          name: name
+        });
+        this.collection.add(tag);
+        _results.push(tag.save());
+      }
+      return _results;
+    };
+
+    TagsSidebarView.prototype.getView = function(item) {
+      return new TagView({
+        model: item
+      });
+    };
 
     return TagsSidebarView;
 
-  })(View);
+  })(CollectionView);
 });

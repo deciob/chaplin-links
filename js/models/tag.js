@@ -14,6 +14,8 @@ define(['chaplin', 'models/base/model'], function(Chaplin, Model) {
       return Tag.__super__.constructor.apply(this, arguments);
     }
 
+    Tag.prototype.url = '/api/tag';
+
     Tag.prototype.defaults = {
       message: 'This is a tag!'
     };

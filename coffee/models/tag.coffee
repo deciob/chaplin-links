@@ -6,6 +6,8 @@ define [
 
   class Tag extends Model
 
+    url: '/api/tag'
+
     defaults:
       message: 'This is a tag!'
 

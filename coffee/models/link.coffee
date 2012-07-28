@@ -6,9 +6,12 @@ define [
 
   class Link extends Model
 
+    url: '/api/link'
+
     defaults:
       message: 'This is a link!'
 
-    #initialize: (attributes, options) ->
-      #super
+    initialize: (attributes, options) ->
+      super
       #console.debug 'HelloWorld#initialize'
+      @initSyncMachine()

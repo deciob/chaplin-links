@@ -2,10 +2,11 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['views/base/view', 'text!templates/save_links.hbs'], function(View, template) {
+define(['chaplin', 'syphon', 'views/base/view', 'models/link', 'text!templates/save_links.hbs'], function(Chaplin, Syphon, View, Link, template) {
   'use strict';
 
-  var SaveLinksView;
+  var SaveLinksView, mediator;
+  mediator = Chaplin.mediator;
   return SaveLinksView = (function(_super) {
 
     __extends(SaveLinksView, _super);
@@ -23,6 +24,34 @@ define(['views/base/view', 'text!templates/save_links.hbs'], function(View, temp
     SaveLinksView.prototype.container = '#links-section';
 
     SaveLinksView.prototype.autoRender = true;
+
+    SaveLinksView.prototype.initialize = function() {
+      SaveLinksView.__super__.initialize.apply(this, arguments);
+      this.delegate('submit', 'form', this.saveLink);
+      return this.modelBind('add', this.linkAdded);
+    };
+
+    SaveLinksView.prototype.saveLink = function(e) {
+      var data, link, tag_list;
+      e.preventDefault();
+      data = Syphon.serialize(this);
+      tag_list = data.tags.replace(/^\s+|\s+$/g, "").split(",");
+      link = new Link({
+        name: data.name,
+        url: data.url,
+        tags: tag_list
+      });
+      mediator.publish('tags:add', tag_list);
+      this.collection.add(link);
+      return link.save();
+    };
+
+    SaveLinksView.prototype.linkAdded = function(item, collection, options) {
+      if (options == null) {
+        options = {};
+      }
+      return $('form').find('input:text').val('');
+    };
 
     return SaveLinksView;
 

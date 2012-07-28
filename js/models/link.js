@@ -14,8 +14,15 @@ define(['chaplin', 'models/base/model'], function(Chaplin, Model) {
       return Link.__super__.constructor.apply(this, arguments);
     }
 
+    Link.prototype.url = '/api/link';
+
     Link.prototype.defaults = {
       message: 'This is a link!'
+    };
+
+    Link.prototype.initialize = function(attributes, options) {
+      Link.__super__.initialize.apply(this, arguments);
+      return this.initSyncMachine();
     };
 
     return Link;

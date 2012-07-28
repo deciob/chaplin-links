@@ -2,7 +2,7 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['chaplin', 'models/link', 'views/save_links_view'], function(Chaplin, Link, SaveLinksView) {
+define(['chaplin', 'models/link', 'models/links', 'views/save_links_view'], function(Chaplin, Link, Links, SaveLinksView) {
   'use strict';
 
   var SaveLinksController;
@@ -16,15 +16,18 @@ define(['chaplin', 'models/link', 'views/save_links_view'], function(Chaplin, Li
 
     SaveLinksController.prototype.title = 'Save links';
 
+    SaveLinksController.prototype.initialize = function() {
+      return this.collection = new Links();
+    };
+
     SaveLinksController.prototype.historyURL = function(params) {
       return '';
     };
 
     SaveLinksController.prototype.show = function(params) {
       console.debug('SaveLinksController#show');
-      this.model = new Link();
       return this.view = new SaveLinksView({
-        model: this.model
+        collection: this.collection
       });
     };
 
