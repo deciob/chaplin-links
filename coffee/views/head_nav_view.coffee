@@ -12,7 +12,7 @@ define [
     template: template
     template = null
 
-    className: 'head-nav'
+    #className: 'head-nav'
 
     # Automatically append to the DOM on render
     container: '#nav-head'

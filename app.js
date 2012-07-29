@@ -1,4 +1,4 @@
-// mostly copied from:
+// derived from:
 // https://github.com/addyosmani/backbone-boilerplates/blob/master/option2/app.js
 
 
@@ -13,8 +13,6 @@ var app = express.createServer();
 // model
 mongoose.connect(connection_string);
 
-
-
 var Link = mongoose.model('Link', new mongoose.Schema({
   name: String,
   url: String,
@@ -26,25 +24,22 @@ var Tag = mongoose.model('Tag', new mongoose.Schema({
 }));
 
 
-
-
 app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(application_root));
-  //app.use(express.static(path.join(application_root, "public")));
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-  //app.set('views', path.join(application_root, "views"));
-  //app.set('view engine', 'jade')
 });
-
 
 app.get('/', function(req, res){
     res.sendfile(__dirname + '/index.html');
 });
 
 
+// *** RESTful API section ***
+
+// Get all
 
 app.get('/api/tags', function(req, res){
   return Tag.find(function(err, data) {
@@ -52,15 +47,13 @@ app.get('/api/tags', function(req, res){
   });
 });
 
-
-
-app.get('/api/link/:id', function(req, res){
-  return Link.findById(req.params.id, function(err, link) {
-    if (!err) {
-      return res.send(link);
-    }
+app.get('/api/links', function(req, res){
+  return Link.find(function(err, data) {
+    return res.send(data);
   });
 });
+
+// Get by id
 
 app.get('/api/tag/:id', function(req, res){
   return Tag.findById(req.params.id, function(err, tag) {
@@ -70,20 +63,29 @@ app.get('/api/tag/:id', function(req, res){
   });
 });
 
-//app.put('/api/todos/:id', function(req, res){
-//  return Todo.findById(req.params.id, function(err, todo) {
-//    todo.text = req.body.text;
-//    todo.done = req.body.done;
-//    todo.order = req.body.order;
-//    return todo.save(function(err) {
-//      if (!err) {
-//        console.log("updated");
-//      }
-//      return res.send(todo);
-//    });
-//  });
-//});
-//
+app.get('/api/link/:id', function(req, res){
+  return Link.findById(req.params.id, function(err, link) {
+    if (!err) {
+      return res.send(link);
+    }
+  });
+});
+
+// Save (post)
+
+app.post('/api/tag', function(req, res){
+  var tag;
+  tag = new Tag({
+    name: req.body.name
+  });
+  tag.save(function(err) {
+    if (!err) {
+      return console.log("created");
+    }
+  });
+  return res.send(tag);
+});
+
 app.post('/api/link', function(req, res){
   var link;
   link = new Link({
@@ -99,18 +101,24 @@ app.post('/api/link', function(req, res){
   return res.send(link);
 });
 
-app.post('/api/tag', function(req, res){
-  var tag;
-  tag = new Tag({
-    name: req.body.name
-  });
-  tag.save(function(err) {
-    if (!err) {
-      return console.log("created");
-    }
-  });
-  return res.send(tag);
-});
+
+// TODO: put, delete
+
+//app.put('/api/todos/:id', function(req, res){
+//  return Todo.findById(req.params.id, function(err, todo) {
+//    todo.text = req.body.text;
+//    todo.done = req.body.done;
+//    todo.order = req.body.order;
+//    return todo.save(function(err) {
+//      if (!err) {
+//        console.log("updated");
+//      }
+//      return res.send(todo);
+//    });
+//  });
+//});
+//
+
 //
 //app.delete('/api/todos/:id', function(req, res){
 //  return Todo.findById(req.params.id, function(err, todo) {

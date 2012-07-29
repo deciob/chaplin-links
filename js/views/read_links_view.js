@@ -2,10 +2,11 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['views/base/view', 'text!templates/read_links.hbs'], function(View, template) {
+define(['chaplin', 'views/base/collection_view', 'views/link_view', 'text!templates/read_links.hbs'], function(Chaplin, CollectionView, LinkView, template) {
   'use strict';
 
-  var ReadLinksView;
+  var ReadLinksView, mediator;
+  mediator = Chaplin.mediator;
   return ReadLinksView = (function(_super) {
 
     __extends(ReadLinksView, _super);
@@ -20,9 +21,52 @@ define(['views/base/view', 'text!templates/read_links.hbs'], function(View, temp
 
     ReadLinksView.prototype.container = '#links-section';
 
-    ReadLinksView.prototype.autoRender = true;
+    /* subview related
+    */
+
+
+    ReadLinksView.prototype.className = 'links';
+
+    ReadLinksView.prototype.tagName = 'div';
+
+    ReadLinksView.prototype.id = 'link-list';
+
+    ReadLinksView.prototype.listSelector = 'ul';
+
+    ReadLinksView.prototype.initialize = function() {
+      ReadLinksView.__super__.initialize.apply(this, arguments);
+      this.subscribeEvent('startupController', this.onStartup);
+      this.subscribeEvent('beforeControllerDispose', this.onDisposal);
+      return this.subscribeEvent('Links:filterd', this.filterLinks);
+    };
+
+    ReadLinksView.prototype.getView = function(item) {
+      return new LinkView({
+        model: item
+      });
+    };
+
+    ReadLinksView.prototype.onStartup = function(e) {
+      return mediator.publish('ReadLinks:startup');
+    };
+
+    ReadLinksView.prototype.onDisposal = function(e) {
+      return mediator.publish('ReadLinks:disposal');
+    };
+
+    ReadLinksView.prototype.filterLinks = function(e) {
+      var id, model, ul, _i, _len;
+      ul = $("#" + this.id + ">ul");
+      ul.find('li').addClass('hide');
+      for (_i = 0, _len = e.length; _i < _len; _i++) {
+        model = e[_i];
+        id = model.get('_id');
+        $("#" + id).parent().show().removeClass('hide');
+      }
+      return ul.find('.hide').hide();
+    };
 
     return ReadLinksView;
 
-  })(View);
+  })(CollectionView);
 });

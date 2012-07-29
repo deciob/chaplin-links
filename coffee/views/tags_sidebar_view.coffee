@@ -1,10 +1,14 @@
 define [
+  'chaplin'
   'views/base/collection_view'
   'views/tag_view'
   'models/tag'
   'text!templates/tags_sidebar.hbs'
-], (CollectionView, TagView, Tag, template) ->
+], (Chaplin, CollectionView, TagView, Tag, template) ->
   'use strict'
+
+  # Shortcut to the mediator
+  mediator = Chaplin.mediator
 
   class TagsSidebarView extends CollectionView
 
@@ -14,24 +18,31 @@ define [
     template: template
     template = null
 
-    className: 'sidebar'
-
-    tagName: 'div' # This is not directly a list but contains a list
-    id: 'tag-list'
-
-    # Append the item views to this element
-    listSelector: 'ol'
-
     # Automatically append to the DOM on render
     container: '#tags-section'
-    # Automatically render after initialize
-    #autoRender: true
+
+    ### subview related ###
+    className: 'sidebar'
+    # This is not directly a list but contains a list
+    tagName: 'div' 
+    id: 'tag-list'
+    # Append the item views to this element
+    listSelector: 'ul'
+
+    # Used for different behaviour depending on liks state
+    active_links: no
 
     initialize: ->
       super
+      @extra_info = $(@el).find('.extra-info')
       @subscribeEvent 'tags:add', @addTags
-      #@collection.synced @render
+      # TODO: is there a better solution? Should these go through the
+      # `ReadLinksController`, instead of the `ReadLinksView`?
+      @subscribeEvent 'ReadLinks:startup', @showExtraInfo
+      @subscribeEvent 'ReadLinks:disposal', @hideExtraInfo
+      @delegate 'click', 'li:.tag', @filterLinks
 
+    # TODO: only add tags if not duplicates
     addTags: (tag_list) ->
       for name in tag_list
         tag = new Tag name: name
@@ -43,5 +54,20 @@ define [
     getView: (item) ->
       # Instantiate an item view
       new TagView model: item
+
+    showExtraInfo: =>
+      @extra_info.show()
+      @active_links = yes
+
+    hideExtraInfo: =>
+      @extra_info.hide()
+      @active_links = no
+
+    filterLinks: (e) =>
+      if @active_links is no then return
+      tag_name = $(e.currentTarget).html()
+      mediator.publish 'TagsSidebarView:filterLinks', tag_name
+
+
 
     

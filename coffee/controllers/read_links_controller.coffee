@@ -1,21 +1,20 @@
 define [
   'chaplin'
-  'models/link'
+  'models/links'
   'views/read_links_view'
-], (Chaplin, Link, ReadLinksView) ->
+], (Chaplin, Links, ReadLinksView) ->
   'use strict'
 
   class ReadLinksController extends Chaplin.Controller
 
     title: 'Read links'
 
-    #initialize: ->
-    #  @show()
+    initialize: ->
+      @collection = new Links()
 
     historyURL: (params) ->
       ''
 
     show: (params) ->
-      console.debug 'ReadLinksController#show'
-      @model = new Link()
-      @view = new ReadLinksView model: @model
+      #console.debug 'ReadLinksController#show'
+      @view = new ReadLinksView collection: @collection

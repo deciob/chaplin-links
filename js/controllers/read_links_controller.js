@@ -2,7 +2,7 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['chaplin', 'models/link', 'views/read_links_view'], function(Chaplin, Link, ReadLinksView) {
+define(['chaplin', 'models/links', 'views/read_links_view'], function(Chaplin, Links, ReadLinksView) {
   'use strict';
 
   var ReadLinksController;
@@ -16,15 +16,17 @@ define(['chaplin', 'models/link', 'views/read_links_view'], function(Chaplin, Li
 
     ReadLinksController.prototype.title = 'Read links';
 
+    ReadLinksController.prototype.initialize = function() {
+      return this.collection = new Links();
+    };
+
     ReadLinksController.prototype.historyURL = function(params) {
       return '';
     };
 
     ReadLinksController.prototype.show = function(params) {
-      console.debug('ReadLinksController#show');
-      this.model = new Link();
       return this.view = new ReadLinksView({
-        model: this.model
+        collection: this.collection
       });
     };
 

@@ -18,8 +18,6 @@ define(['views/base/view', 'text!templates/head_nav.hbs'], function(View, templa
 
     template = null;
 
-    HeadNavView.prototype.className = 'head-nav';
-
     HeadNavView.prototype.container = '#nav-head';
 
     HeadNavView.prototype.autoRender = true;
