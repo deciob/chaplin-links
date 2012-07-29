@@ -1,0 +1,17 @@
+
+
+#nav-head {
+    border-bottom: solid #E0E0E0 1px;
+    margin: 5px;
+}
+
+#tags-section {
+    padding-left: 15px;
+    padding-top: 15px;
+}
+
+#links-section {
+    border-left: solid #E0E0E0 1px;
+    padding-left: 20px;
+    padding-top: 15px;
+}
