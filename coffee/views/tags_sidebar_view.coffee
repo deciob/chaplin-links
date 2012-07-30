@@ -42,12 +42,14 @@ define [
       @subscribeEvent 'ReadLinks:disposal', @hideExtraInfo
       @delegate 'click', 'li:.tag', @filterLinks
 
-    # TODO: only add tags if not duplicates
     addTags: (tag_list) ->
       for name in tag_list
-        tag = new Tag name: name
-        @collection.add(tag)
-        tag.save()
+        existing_tag = @collection.filterByTagName(name)
+        # if this is an existing tag do not save...
+        if existing_tag.length == 0
+          tag = new Tag name: name
+          @collection.add(tag)
+          tag.save()
 
     # The most important method a class derived from CollectionView
     # must overwrite.

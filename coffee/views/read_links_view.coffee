@@ -34,9 +34,10 @@ define [
 
     initialize: ->
       super
+      #_.extend(@options, filterer: @ft) 
       @subscribeEvent 'startupController', @onStartup
       @subscribeEvent 'beforeControllerDispose', @onDisposal
-      @subscribeEvent 'Links:filterd', @filterLinks
+      @subscribeEvent 'TagsSidebarView:filterLinks', @setCurrentTag
 
     # The most important method a class derived from CollectionView
     # must overwrite.
@@ -50,14 +51,16 @@ define [
     onDisposal: (e) ->
       mediator.publish 'ReadLinks:disposal'
 
-    # TODO: must be something better than this! Collection.reset... ?
-    filterLinks: (e) ->
-      ul = $("##{@id}>ul")
-      ul.find('li').addClass('hide')
-      for model in e
-        id = model.get('_id')
-        $("##{id}").parent().show().removeClass('hide')
-      ul.find('.hide').hide()
+    setCurrentTag: (tag) =>
+      @current_tag = tag
+      @filter(@filterByCurrentTag)
+
+    filterByCurrentTag: (link, idx) =>
+      if @current_tag
+        link_tags = link.get('tags').split ","
+        current_tag = [@current_tag]
+        intersection = _.intersection(current_tag, link_tags)
+        if intersection.length > 0 then link else no
 
 
 

@@ -28,3 +28,7 @@ define [
       @finishSync()
       # state: synced
 
+    filterByTagName: (name) ->
+      @filter (tag) ->
+        if tag.get('name') == name then tag else no
+

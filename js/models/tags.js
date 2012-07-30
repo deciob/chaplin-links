@@ -35,6 +35,16 @@ define(['chaplin', 'models/base/collection', 'models/tag'], function(Chaplin, Co
       return this.finishSync();
     };
 
+    Tags.prototype.filterByTagName = function(name) {
+      return this.filter(function(tag) {
+        if (tag.get('name') === name) {
+          return tag;
+        } else {
+          return false;
+        }
+      });
+    };
+
     return Tags;
 
   })(Collection);

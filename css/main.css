@@ -11,11 +11,20 @@
 }
 
 #links-section {
-    border-left: solid #E0E0E0 1px;
+    border-right: solid #E0E0E0 1px;
     padding-left: 20px;
     padding-top: 15px;
 }
 
 ul, form {
     font-size: 1.2em;
+}
+
+h3 {
+    padding-bottom: 15px;
+}
+
+li {
+    cursor: hand; 
+    cursor: pointer;
 }

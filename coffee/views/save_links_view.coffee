@@ -30,9 +30,11 @@ define [
       @delegate 'submit', 'form', @saveLink
       @modelBind 'add', @linkAdded
 
+    # TODO: check for duplicates, validation on url, no difference upper-lower case
     saveLink: (e) ->
       e.preventDefault()
       data = Syphon.serialize @
+      # TODO: does this work as expected?
       tag_list = data.tags.replace(/^\s+|\s+$/g, "").split ","
       link = new Link( name: data.name, url: data.url, tags: tag_list )
       mediator.publish 'tags:add', tag_list

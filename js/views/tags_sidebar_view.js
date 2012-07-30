@@ -51,15 +51,20 @@ define(['chaplin', 'views/base/collection_view', 'views/tag_view', 'models/tag',
     };
 
     TagsSidebarView.prototype.addTags = function(tag_list) {
-      var name, tag, _i, _len, _results;
+      var existing_tag, name, tag, _i, _len, _results;
       _results = [];
       for (_i = 0, _len = tag_list.length; _i < _len; _i++) {
         name = tag_list[_i];
-        tag = new Tag({
-          name: name
-        });
-        this.collection.add(tag);
-        _results.push(tag.save());
+        existing_tag = this.collection.filterByTagName(name);
+        if (existing_tag.length === 0) {
+          tag = new Tag({
+            name: name
+          });
+          this.collection.add(tag);
+          _results.push(tag.save());
+        } else {
+          _results.push(void 0);
+        }
       }
       return _results;
     };
