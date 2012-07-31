@@ -1,20 +1,29 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="utf-8">
 <title>Chaplin Boilerplate Application</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
 <link href="css/main.css" rel="stylesheet">
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
 </head>
+
 <body>
 
 
-  <section id="nav-head" class="row"></section>
-  <div class="row">
-    <section id="links-section" class="span7"></section>
-    <section id="tags-section" class="span5"></section>
+     
+  <section id="nav-head" class="navbar navbar-fixed-top"></section>
+  <div class="row-fluid">
+    <section id="links-section" class="span5"></section>
+    <section id="tags-section" class="span3"></section>
   </div>
-
 
 <script src="js/vendor/require-2.0.4.js"></script>
 <script>
@@ -54,7 +63,7 @@ requirejs.config({
   }
   // For easier development, disable browser caching
   // Of course, this should be removed in a production environment
-  //, urlArgs: 'bust=' +  (new Date()).getTime()
+  , urlArgs: 'bust=' +  (new Date()).getTime()
 });
 
 // Bootstrap the application
@@ -65,4 +74,5 @@ require(['chaplin_links_application'], function (LinksApplication) {
 </script>
 
 </body>
+
 </html>

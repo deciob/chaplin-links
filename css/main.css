@@ -1,4 +1,6 @@
-
+body {
+    padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+}
 
 #nav-head {
     border-bottom: solid #E0E0E0 1px;
@@ -6,12 +8,12 @@
 }
 
 #tags-section {
+    border-left: solid #E0E0E0 1px;
     padding-left: 15px;
     padding-top: 15px;
 }
 
 #links-section {
-    border-right: solid #E0E0E0 1px;
     padding-left: 20px;
     padding-top: 15px;
 }
@@ -24,7 +26,3 @@ h3 {
     padding-bottom: 15px;
 }
 
-li {
-    cursor: hand; 
-    cursor: pointer;
-}

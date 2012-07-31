@@ -77,11 +77,14 @@ define(['chaplin', 'views/base/collection_view', 'views/tag_view', 'models/tag',
 
     TagsSidebarView.prototype.showExtraInfo = function() {
       this.extra_info.show();
+      console.log('v', $(this.el), $(this.el).find('li'));
+      $(this.el).find('li').css('cursor', 'pointer');
       return this.active_links = true;
     };
 
     TagsSidebarView.prototype.hideExtraInfo = function() {
       this.extra_info.hide();
+      $(this.el).find('li').css('cursor', '');
       return this.active_links = false;
     };
 

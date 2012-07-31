@@ -59,10 +59,12 @@ define [
 
     showExtraInfo: =>
       @extra_info.show()
+      $(@el).find('li').css('cursor', 'pointer')
       @active_links = yes
 
     hideExtraInfo: =>
       @extra_info.hide()
+      $(@el).find('li').css('cursor', '')
       @active_links = no
 
     filterLinks: (e) =>
