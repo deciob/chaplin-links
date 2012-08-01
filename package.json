@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "dependencies": { 
     "express": "~3.0.0",
-    "mongoose": "~2.7.0"
+    "mongoose": "~2.7.0",
+    "jsdom": "~0.2.15",
+    "request": "~2.1.1",
+    "node.io": "~0.4.12"
   }
 }

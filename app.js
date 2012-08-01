@@ -5,6 +5,8 @@
 var application_root = __dirname,
   express = require("express"),
   path = require("path"),
+  jsdom = require('jsdom'),
+  request = require('request'),
   mongoose = require('mongoose'),
   connection_string = require('./connection_string');
 
@@ -88,17 +90,47 @@ app.post('/api/tag', function(req, res){
 
 app.post('/api/link', function(req, res){
   var link;
-  link = new Link({
-    name: req.body.name,
-    url: req.body.url,
-    tags: req.body.tags
+
+  var nodeio = require('node.io'), options = {timeout: 10, url: req.body.url};
+  
+  var job = new nodeio.Job(options, {
+    input: false,
+    run: function () {
+      this.getHtml(options.url, function (err, $) {
+        var result = $('title').text;
+
+          link = new Link({
+            name: result,
+            url: req.body.url,
+            tags: req.body.tags
+          });
+          link.save(function(err) {
+            if (!err) {
+              return console.log("created");
+            }
+          });
+          return res.send(link);
+          //this.emit(result);
+        });
+      }
   });
-  link.save(function(err) {
-    if (!err) {
-      return console.log("created");
-    }
-  });
-  return res.send(link);
+  job.run();
+
+
+
+  //console.log(app.getTitle(req.body.url), 'xxxxxx');
+  //console.log('dsdsdsd', app.getTitle(req.body.url) );
+  //link = new Link({
+  //  //name: app.getTitle(req.body.url),
+  //  url: req.body.url,
+  //  tags: req.body.tags
+  //});
+  //link.save(function(err) {
+  //  if (!err) {
+  //    return console.log("created");
+  //  }
+  //});
+  
 });
 
 
@@ -119,16 +151,7 @@ app.post('/api/link', function(req, res){
 //});
 //
 
-//
-//app.delete('/api/todos/:id', function(req, res){
-//  return Todo.findById(req.params.id, function(err, todo) {
-//    return todo.remove(function(err) {
-//      if (!err) {
-//        console.log("removed");
-//        return res.send('')
-//      }
-//    });
-//  });
-//});
+
+
 
 app.listen(3000);
