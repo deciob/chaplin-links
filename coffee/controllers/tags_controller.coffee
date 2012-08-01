@@ -6,8 +6,8 @@ define ->
   (match) ->
 
     # Note: explain how it works!
-    match '', 'links#save,tags#save'
+    match '', 'links#save'
     match 'read-links', 'links#read'
 
-    #match '', 'tags#save'
-    #match 'read-links', 'tags#read'
+    match '', 'tags#save'
+    match 'read-links', 'tags#read'

@@ -2,9 +2,8 @@ define [
   'chaplin'
   'views/layout'
   'controllers/head_nav_controller'
-  'controllers/tags_sidebar_controller'
   'routes'
-], (Chaplin, Layout, HeadNavController, TagsSidebarController, routes) ->
+], (Chaplin, Layout, HeadNavController, routes) ->
   'use strict'
 
   # The application object
@@ -55,7 +54,7 @@ define [
       # or navigation views.
       # e.g. new NavigationController()
       new HeadNavController()
-      new TagsSidebarController()
+      #new TagsSidebarController()
 
     # Create additional mediator properties
     # -------------------------------------

@@ -3,7 +3,7 @@
 define(function() {
   'use strict';
   return function(match) {
-    match('', 'saveLinks#show');
-    return match('read-links', 'readLinks#show');
+    match('', 'links#save,tags#save');
+    return match('read-links', 'links#read');
   };
 });

@@ -2,36 +2,43 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['chaplin', 'models/tags', 'views/tags_sidebar_view'], function(Chaplin, Tags, TagsSidebarView) {
+define(['chaplin', 'models/tags', 'views/tags_sidebar_view_esit', 'views/tags_sidebar_view_save'], function(Chaplin, Tags, TagsSidebarViewEdit, TagsSidebarViewSave) {
   'use strict';
 
-  var TagsSidebarController;
-  return TagsSidebarController = (function(_super) {
+  var tagsController;
+  return tagsController = (function(_super) {
 
-    __extends(TagsSidebarController, _super);
+    __extends(tagsController, _super);
 
-    function TagsSidebarController() {
-      return TagsSidebarController.__super__.constructor.apply(this, arguments);
+    function tagsController() {
+      return tagsController.__super__.constructor.apply(this, arguments);
     }
 
-    TagsSidebarController.prototype.title = 'Tags sidebar';
+    tagsController.prototype.title = 'Tags sidebar';
 
-    TagsSidebarController.prototype.initialize = function() {
-      this.collection = new Tags();
-      return this.show();
+    tagsController.prototype.initialize = function() {
+      return this.collection = new Tags();
     };
 
-    TagsSidebarController.prototype.historyURL = function(params) {
+    tagsController.prototype.historyURL = function(params) {
       return '';
     };
 
-    TagsSidebarController.prototype.show = function(params) {
-      return this.view = new TagsSidebarView({
+    tagsController.prototype.read = function(params) {
+      console.debug('TagsSidebarController#show');
+      return this.view = new TagsSidebarViewRead({
         collection: this.collection
       });
     };
 
-    return TagsSidebarController;
+    tagsController.prototype.save = function(params) {
+      console.debug('TagsSidebarController#edit');
+      return this.view = new TagsSidebarViewEdit({
+        collection: this.collection
+      });
+    };
+
+    return tagsController;
 
   })(Chaplin.Controller);
 });

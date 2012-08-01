@@ -10,7 +10,7 @@ define [
   # Shortcut to the mediator
   mediator = Chaplin.mediator
 
-  class TagsSidebarView extends CollectionView
+  class TagsSidebarViewBase extends CollectionView
 
     # Save the template string in a prototype property.
     # This is overwritten with the compiled template function.

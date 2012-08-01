@@ -2,7 +2,7 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['chaplin', 'views/layout', 'controllers/head_nav_controller', 'controllers/tags_sidebar_controller', 'routes'], function(Chaplin, Layout, HeadNavController, TagsSidebarController, routes) {
+define(['chaplin', 'views/layout', 'controllers/head_nav_controller', 'routes'], function(Chaplin, Layout, HeadNavController, routes) {
   'use strict';
 
   var LinksApplication;
@@ -33,8 +33,7 @@ define(['chaplin', 'views/layout', 'controllers/head_nav_controller', 'controlle
     };
 
     LinksApplication.prototype.initControllers = function() {
-      new HeadNavController();
-      return new TagsSidebarController();
+      return new HeadNavController();
     };
 
     LinksApplication.prototype.initMediator = function() {

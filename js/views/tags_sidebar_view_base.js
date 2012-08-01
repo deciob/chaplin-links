@@ -6,43 +6,43 @@ var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments)
 define(['chaplin', 'views/base/collection_view', 'views/tag_view', 'models/tag', 'text!templates/tags_sidebar.hbs'], function(Chaplin, CollectionView, TagView, Tag, template) {
   'use strict';
 
-  var TagsSidebarView, mediator;
+  var TagsSidebarViewBase, mediator;
   mediator = Chaplin.mediator;
-  return TagsSidebarView = (function(_super) {
+  return TagsSidebarViewBase = (function(_super) {
 
-    __extends(TagsSidebarView, _super);
+    __extends(TagsSidebarViewBase, _super);
 
-    function TagsSidebarView() {
+    function TagsSidebarViewBase() {
       this.filterLinks = __bind(this.filterLinks, this);
 
       this.hideExtraInfo = __bind(this.hideExtraInfo, this);
 
       this.showExtraInfo = __bind(this.showExtraInfo, this);
-      return TagsSidebarView.__super__.constructor.apply(this, arguments);
+      return TagsSidebarViewBase.__super__.constructor.apply(this, arguments);
     }
 
-    TagsSidebarView.prototype.template = template;
+    TagsSidebarViewBase.prototype.template = template;
 
     template = null;
 
-    TagsSidebarView.prototype.container = '#tags-section';
+    TagsSidebarViewBase.prototype.container = '#tags-section';
 
     /* subview related
     */
 
 
-    TagsSidebarView.prototype.className = 'sidebar';
+    TagsSidebarViewBase.prototype.className = 'sidebar';
 
-    TagsSidebarView.prototype.tagName = 'div';
+    TagsSidebarViewBase.prototype.tagName = 'div';
 
-    TagsSidebarView.prototype.id = 'tag-list';
+    TagsSidebarViewBase.prototype.id = 'tag-list';
 
-    TagsSidebarView.prototype.listSelector = 'ul';
+    TagsSidebarViewBase.prototype.listSelector = 'ul';
 
-    TagsSidebarView.prototype.active_links = false;
+    TagsSidebarViewBase.prototype.active_links = false;
 
-    TagsSidebarView.prototype.initialize = function() {
-      TagsSidebarView.__super__.initialize.apply(this, arguments);
+    TagsSidebarViewBase.prototype.initialize = function() {
+      TagsSidebarViewBase.__super__.initialize.apply(this, arguments);
       this.extra_info = $(this.el).find('.extra-info');
       this.subscribeEvent('tags:add', this.addTags);
       this.subscribeEvent('ReadLinks:startup', this.showExtraInfo);
@@ -50,7 +50,7 @@ define(['chaplin', 'views/base/collection_view', 'views/tag_view', 'models/tag',
       return this.delegate('click', 'li:.tag', this.filterLinks);
     };
 
-    TagsSidebarView.prototype.addTags = function(tag_list) {
+    TagsSidebarViewBase.prototype.addTags = function(tag_list) {
       var existing_tag, name, tag, _i, _len, _results;
       _results = [];
       for (_i = 0, _len = tag_list.length; _i < _len; _i++) {
@@ -69,25 +69,25 @@ define(['chaplin', 'views/base/collection_view', 'views/tag_view', 'models/tag',
       return _results;
     };
 
-    TagsSidebarView.prototype.getView = function(item) {
+    TagsSidebarViewBase.prototype.getView = function(item) {
       return new TagView({
         model: item
       });
     };
 
-    TagsSidebarView.prototype.showExtraInfo = function() {
+    TagsSidebarViewBase.prototype.showExtraInfo = function() {
       this.extra_info.show();
       $(this.el).find('li').css('cursor', 'pointer');
       return this.active_links = true;
     };
 
-    TagsSidebarView.prototype.hideExtraInfo = function() {
+    TagsSidebarViewBase.prototype.hideExtraInfo = function() {
       this.extra_info.hide();
       $(this.el).find('li').css('cursor', '');
       return this.active_links = false;
     };
 
-    TagsSidebarView.prototype.filterLinks = function(e) {
+    TagsSidebarViewBase.prototype.filterLinks = function(e) {
       var tag_name;
       if (this.active_links === false) {
         return;
@@ -96,7 +96,7 @@ define(['chaplin', 'views/base/collection_view', 'views/tag_view', 'models/tag',
       return mediator.publish('TagsSidebarView:filterLinks', tag_name);
     };
 
-    return TagsSidebarView;
+    return TagsSidebarViewBase;
 
   })(CollectionView);
 });

@@ -1,21 +1,26 @@
 define [
   'chaplin'
   'models/tags'
-  'views/tags_sidebar_view'
-], (Chaplin, Tags, TagsSidebarView) ->
+  'views/tags_sidebar_view_esit'
+  'views/tags_sidebar_view_save'
+], (Chaplin, Tags, TagsSidebarViewEdit, TagsSidebarViewSave) ->
   'use strict'
 
-  class TagsSidebarController extends Chaplin.Controller
+  class tagsController extends Chaplin.Controller
 
     title: 'Tags sidebar'
 
     initialize: ->
       @collection = new Tags()
-      @show()
+      #@show()
 
     historyURL: (params) ->
       ''
 
-    show: (params) ->
-      #console.debug 'HelloWorldController#show'
-      @view = new TagsSidebarView collection: @collection
+    read: (params) ->
+      console.debug 'TagsSidebarController#show'
+      @view = new TagsSidebarViewRead collection: @collection
+
+    save: (params) ->
+      console.debug 'TagsSidebarController#edit'
+      @view = new TagsSidebarViewEdit collection: @collection
