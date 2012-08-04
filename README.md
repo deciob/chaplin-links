@@ -16,14 +16,19 @@ chaplin-links
 cd
 git@github.com:deciob/chaplin-links.git
 cd ~/chaplin-links
+
 # If no coffeescript
 sudo npm install -g coffee
+
 # Install server dependencies
 npm install .
+
 # Edit connection_string_template.js to point to your mongodb database
 # and save the file as connection_string.js
+
 # Runserver and go to localhost:3000
 node app.js
+
 # To compile coffee changes to js
 coffee --bare --output js/ coffee/ 
 
