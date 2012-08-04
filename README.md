@@ -34,3 +34,5 @@ node app.js
 coffee --bare --output js/ coffee/ 
 
 ```
+
+![overview](./img/controllers_layout_b.png)
