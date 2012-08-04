@@ -4,6 +4,6 @@ define(function() {
   'use strict';
   return function(match) {
     match('', 'saveLinks#show');
-    return match('read-links', 'readLinks#show');
+    return match('links', 'Links#show');
   };
 });

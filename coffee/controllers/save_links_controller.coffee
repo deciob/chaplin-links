@@ -8,17 +8,14 @@ define [
 
   class SaveLinksController extends Chaplin.Controller
 
-    title: 'Save links'
+    title: 'Save bookmark'
 
     initialize: ->
       @collection = new Links()
-
-    #  @show()
 
     historyURL: (params) ->
       ''
 
     show: (params) ->
-      console.debug 'SaveLinksController#show'
-      #@model = new Link()
+      #console.debug 'SaveLinksController#show'
       @view = new SaveLinksView collection: @collection#, model: @model

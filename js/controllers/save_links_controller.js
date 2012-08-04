@@ -14,7 +14,7 @@ define(['chaplin', 'models/link', 'models/links', 'views/save_links_view'], func
       return SaveLinksController.__super__.constructor.apply(this, arguments);
     }
 
-    SaveLinksController.prototype.title = 'Save links';
+    SaveLinksController.prototype.title = 'Save bookmark';
 
     SaveLinksController.prototype.initialize = function() {
       return this.collection = new Links();
@@ -25,7 +25,6 @@ define(['chaplin', 'models/link', 'models/links', 'views/save_links_view'], func
     };
 
     SaveLinksController.prototype.show = function(params) {
-      console.debug('SaveLinksController#show');
       return this.view = new SaveLinksView({
         collection: this.collection
       });

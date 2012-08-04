@@ -7,4 +7,4 @@ define ->
 
     # Note: explain how it works!
     match '', 'saveLinks#show'
-    match 'read-links', 'readLinks#show'
+    match 'links', 'Links#show'

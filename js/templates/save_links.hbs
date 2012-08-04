@@ -1,19 +1,17 @@
-<h3>Save a new link.</h3>
+<h3 title="test" rel="tooltip">Bookmark a website!</h3>
 
 <form class="link">
   <fieldset>
-    <div>
-      <label>Name</label>
-      <input name="name" type="text" class="span5">
-    </div>
     <div>
       <label>Url</label>
       <input name="url" type="text" class="span5">
     </div>
     <div>
       <label>Tags</label>
-      <input name="tags" type="text" class="span5">
+      <input rel="tooltip" name="tags" type="text" class="span5" 
+      title="Write a comma separated list of tags or choose from existing ones by clicking on the tags list">
     </div>
       <button type="submit" class="btn">Save</button>
+      <img class="loading" style="display: none;" src="../img/loading.gif">
   </fieldset>
 </form>

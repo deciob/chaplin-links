@@ -1,10 +1,12 @@
 define [
+  #'jquery'
+  'tooltip'
   'chaplin'
   'syphon'
   'views/base/view'
   'models/link'
   'text!templates/save_links.hbs'
-], (Chaplin, Syphon, View, Link, template) ->
+], (tooltip, Chaplin, Syphon, View, Link, template) ->
   'use strict'
 
   # Shortcut to the mediator
@@ -27,21 +29,33 @@ define [
 
     initialize: ->
       super
+      @subscribeEvent 'TagsSidebarView:tagClicked', @addTag
+      @subscribeEvent 'startupController', @setupTooltips
       @delegate 'submit', 'form', @saveLink
-      @modelBind 'add', @linkAdded
+      #@modelBind 'save', @linkAdded
 
     # TODO: check for duplicates, validation on url, no difference upper-lower case
     saveLink: (e) ->
       e.preventDefault()
+      $('img.loading').show()
       data = Syphon.serialize @
-      # TODO: does this work as expected?
+      # TODO: does the regex work as expected?
       tag_list = data.tags.replace(/^\s+|\s+$/g, "").split ","
-      link = new Link( name: data.name, url: data.url, tags: tag_list )
+      link = new Link( url: data.url, tags: tag_list )
       mediator.publish 'tags:add', tag_list
       @collection.add(link)
-      link.save()
+      # using `$.Deferred` `done` method
+      link.save().done @linkAdded
 
-    linkAdded: (item, collection, options = {}) ->
-      $('form').find('input:text').val('')
+    linkAdded: (item, collection, options = {}) =>
+      mediator.publish '!router:route', 'links'
+
+    addTag: (tag_name) ->
+      inp = $('input[name=tags]')
+      content = inp.val() + "," + tag_name
+      inp.val(content.replace(/(^,)|(,$)/g, ""))
+
+    setupTooltips: (e) ->
+      $(@el).find('input').tooltip()
 
       

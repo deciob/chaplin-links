@@ -8,7 +8,7 @@ define [
 
   mediator = Chaplin.mediator
 
-  class ReadLinksView extends CollectionView
+  class LinksView extends CollectionView
 
     # Save the template string in a prototype property.
     # This is overwritten with the compiled template function.
@@ -24,7 +24,7 @@ define [
     # Automatically render after initialize
     #autoRender: true
 
-    ### subview related ###
+    ### collection related ###
     className: 'links'
     # This is not directly a list but contains a list
     tagName: 'div' 
@@ -37,7 +37,7 @@ define [
       #_.extend(@options, filterer: @ft) 
       @subscribeEvent 'startupController', @onStartup
       @subscribeEvent 'beforeControllerDispose', @onDisposal
-      @subscribeEvent 'TagsSidebarView:filterLinks', @setCurrentTag
+      @subscribeEvent 'TagsSidebarView:tagClicked', @setCurrentTag
 
     # The most important method a class derived from CollectionView
     # must overwrite.
@@ -46,10 +46,10 @@ define [
       new LinkView model: item
 
     onStartup: (e) ->
-      mediator.publish 'ReadLinks:startup'
+      mediator.publish 'Links:startup'
 
     onDisposal: (e) ->
-      mediator.publish 'ReadLinks:disposal'
+      mediator.publish 'Links:disposal'
 
     setCurrentTag: (tag) =>
       @current_tag = tag

@@ -21,9 +21,8 @@ define [
 
     initialize: ->
       super
-      @delegate 'click', 'a', @setActiveNavBtn
+      @subscribeEvent 'matchRoute', @setNavBtn
 
-    setActiveNavBtn: (e) ->
-      ct = e.currentTarget
+    setNavBtn: (e) ->
       $('ul:.nav > li').removeClass('active')
-      $(ct).parent().addClass('active')
+      $(@el).find('a[href="/'+e.pattern+'"]').parent().addClass('active')

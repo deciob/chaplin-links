@@ -32,6 +32,7 @@ requirejs.config({
   // Specify the paths of vendor libraries
   paths: {
     jquery: 'vendor/jquery-1.7.2',
+    tooltip: 'vendor/bootstrap-tooltip',
     underscore: 'vendor/underscore-1.3.3',
     backbone: 'vendor/backbone-0.9.2',
     local_storage: 'vendor/backbone.localStorage',
@@ -43,8 +44,12 @@ requirejs.config({
   // Underscore and Backbone are not AMD-capable per default,
   // so we need to use the AMD wrapping of RequireJS
   shim: {
+    tooltip: {
+      deps: ['jquery'],
+      exports: 'jquery'
+    },
     backbone: {
-      deps: ['underscore', 'jquery'],
+      deps: ['jquery'],
       exports: 'Backbone'
     },
     underscore: {

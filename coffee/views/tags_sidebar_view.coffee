@@ -38,9 +38,11 @@ define [
       @subscribeEvent 'tags:add', @addTags
       # TODO: is there a better solution? Should these go through the
       # `ReadLinksController`, instead of the `ReadLinksView`?
-      @subscribeEvent 'ReadLinks:startup', @showExtraInfo
-      @subscribeEvent 'ReadLinks:disposal', @hideExtraInfo
-      @delegate 'click', 'li:.tag', @filterLinks
+      @subscribeEvent 'Links:startup', @showExtraInfo
+      @subscribeEvent 'Links:disposal', @hideExtraInfo
+      @subscribeEvent 'matchRoute', @removeActiveState
+      @delegate 'click', 'li:.tag', @tagClicked
+
 
     addTags: (tag_list) ->
       for name in tag_list
@@ -67,10 +69,16 @@ define [
       $(@el).find('li').css('cursor', '')
       @active_links = no
 
-    filterLinks: (e) =>
-      if @active_links is no then return
-      tag_name = $(e.currentTarget).html()
-      mediator.publish 'TagsSidebarView:filterLinks', tag_name
+    tagClicked: (e) =>
+      #if @active_links is no then return
+      t = $(e.currentTarget)
+      tag_name = t.html()
+      @removeActiveState()
+      t.addClass('active')
+      mediator.publish 'TagsSidebarView:tagClicked', tag_name
+
+    removeActiveState: ->
+      $(@el).find('li').removeClass('active')
 
 
 

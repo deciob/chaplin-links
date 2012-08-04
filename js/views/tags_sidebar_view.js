@@ -13,7 +13,7 @@ define(['chaplin', 'views/base/collection_view', 'views/tag_view', 'models/tag',
     __extends(TagsSidebarView, _super);
 
     function TagsSidebarView() {
-      this.filterLinks = __bind(this.filterLinks, this);
+      this.tagClicked = __bind(this.tagClicked, this);
 
       this.hideExtraInfo = __bind(this.hideExtraInfo, this);
 
@@ -45,9 +45,10 @@ define(['chaplin', 'views/base/collection_view', 'views/tag_view', 'models/tag',
       TagsSidebarView.__super__.initialize.apply(this, arguments);
       this.extra_info = $(this.el).find('.extra-info');
       this.subscribeEvent('tags:add', this.addTags);
-      this.subscribeEvent('ReadLinks:startup', this.showExtraInfo);
-      this.subscribeEvent('ReadLinks:disposal', this.hideExtraInfo);
-      return this.delegate('click', 'li:.tag', this.filterLinks);
+      this.subscribeEvent('Links:startup', this.showExtraInfo);
+      this.subscribeEvent('Links:disposal', this.hideExtraInfo);
+      this.subscribeEvent('matchRoute', this.removeActiveState);
+      return this.delegate('click', 'li:.tag', this.tagClicked);
     };
 
     TagsSidebarView.prototype.addTags = function(tag_list) {
@@ -77,7 +78,6 @@ define(['chaplin', 'views/base/collection_view', 'views/tag_view', 'models/tag',
 
     TagsSidebarView.prototype.showExtraInfo = function() {
       this.extra_info.show();
-      console.log('v', $(this.el), $(this.el).find('li'));
       $(this.el).find('li').css('cursor', 'pointer');
       return this.active_links = true;
     };
@@ -88,13 +88,17 @@ define(['chaplin', 'views/base/collection_view', 'views/tag_view', 'models/tag',
       return this.active_links = false;
     };
 
-    TagsSidebarView.prototype.filterLinks = function(e) {
-      var tag_name;
-      if (this.active_links === false) {
-        return;
-      }
-      tag_name = $(e.currentTarget).html();
-      return mediator.publish('TagsSidebarView:filterLinks', tag_name);
+    TagsSidebarView.prototype.tagClicked = function(e) {
+      var t, tag_name;
+      t = $(e.currentTarget);
+      tag_name = t.html();
+      this.removeActiveState();
+      t.addClass('active');
+      return mediator.publish('TagsSidebarView:tagClicked', tag_name);
+    };
+
+    TagsSidebarView.prototype.removeActiveState = function() {
+      return $(this.el).find('li').removeClass('active');
     };
 
     return TagsSidebarView;

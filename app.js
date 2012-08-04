@@ -38,6 +38,10 @@ app.get('/', function(req, res){
     res.sendfile(__dirname + '/index.html');
 });
 
+app.get('/links', function(req, res){
+    res.sendfile(__dirname + '/index.html');
+});
+
 
 // *** RESTful API section ***
 

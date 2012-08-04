@@ -24,14 +24,12 @@ define(['views/base/view', 'text!templates/head_nav.hbs'], function(View, templa
 
     HeadNavView.prototype.initialize = function() {
       HeadNavView.__super__.initialize.apply(this, arguments);
-      return this.delegate('click', 'a', this.setActiveNavBtn);
+      return this.subscribeEvent('matchRoute', this.setNavBtn);
     };
 
-    HeadNavView.prototype.setActiveNavBtn = function(e) {
-      var ct;
-      ct = e.currentTarget;
+    HeadNavView.prototype.setNavBtn = function(e) {
       $('ul:.nav > li').removeClass('active');
-      return $(ct).parent().addClass('active');
+      return $(this.el).find('a[href="/' + e.pattern + '"]').parent().addClass('active');
     };
 
     return HeadNavView;
