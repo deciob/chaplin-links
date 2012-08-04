@@ -12,6 +12,18 @@ chaplin-links
 * [mongoDB] (http://www.mongodb.org/display/DOCS/Quickstart) (I have by-passed this step by setting up a free account on [mongolab] (https://mongolab.com))
 
 ### How to run:
-* If coffe is not installed: `sudo npm install -g coffee`
-* Move into the application root directory and install dependencies: `npm install .`
-* Start the server: `node app.js`
+```
+cd
+git@github.com:deciob/chaplin-links.git
+cd ~/chaplin-links
+# If no coffeescript
+sudo npm install -g coffee
+npm install .
+# Edit connection_string_template.js to point to your mongodb database
+# and save the file as connection_string.js
+# Runserver and go to localhost:3000
+node app.js
+# To compile coffee changes to js
+coffee --bare --output js/ coffee/ 
+
+```
