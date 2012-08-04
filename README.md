@@ -35,4 +35,4 @@ coffee --bare --output js/ coffee/
 
 ```
 
-![overview](./img/chaplin-links/master/img/controllers_layout_b.png)
+![overview](./chaplin-links/master/img/controllers_layout_b.png)
