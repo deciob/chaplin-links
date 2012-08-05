@@ -37,4 +37,15 @@ coffee --bare --output js/ coffee/
 
 ```
 
+## Motivation
+My goal is to learn Chaplin. I am not totally new to the JavaScript MV* hype and have built a couple of fairly complex one page JavaScript applications using spinejs. I have been flirting with backbone for some time now, curious about its popularity, but never got to try it out until... Chaplin came along...
+
+Started with backbone. My first Backbone weekend though, full of source code, blog posts and tutorials, was one of frustration... so many ways of doing the same thing! Beautiful, but also so frustrating for a not-so-brilliant-developer like me, with not so much free time to spare. I needed some good pragmatic guidance! After 2 days, I had very little working code and no real understanding about what was best. So, the weekend after, with not much enthusiasm left, I ditched Backbone for Chaplin and...
+
+… beautiful surprise! After reading the presentation once more and some good poking into the source code and example applications, I had this learning application up and running and, most important, I was having fun building it!
+
+
+
+
+
 ![overview](https://raw.github.com/deciob/chaplin-links/master/img/controllers_layout_b.png)
