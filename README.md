@@ -57,7 +57,8 @@ As a general advice to start playing with Chaplin I would suggest:
 * Look into the source code if not sure about something.
 
 ## About Controllers
-See [Chaplin-docs](https://github.com/chaplinjs/chaplin/blob/master/README.md#controllers)
+See [Chaplin-docs](https://github.com/chaplinjs/chaplin/blob/master/README.md#controllers).
+
 In my opinion Controllers are fundamental to understanding the Chaplin architecture and a good way to think about them is visually:
 
 ![overview](https://raw.github.com/deciob/chaplin-links/master/img/controllers_layout_b.png)
