@@ -57,9 +57,9 @@ As a general advice to start playing with Chaplin I would suggest:
 * Look into the source code if not sure about something.
 
 ## About Controllers
-See [Chaplin-docs](https://github.com/chaplinjs/chaplin/blob/master/README.md#controllers).
+[Chaplin-docs](https://github.com/chaplinjs/chaplin/blob/master/README.md#controllers).
 
-In my opinion Controllers are fundamental to understanding the Chaplin architecture and a good way to think about them is visually:
+Controllers are key to understanding the Chaplin architecture and a good way to think about them is visually:
 
 ![overview](https://raw.github.com/deciob/chaplin-links/master/img/controllers_layout_b.png)
 
@@ -91,6 +91,8 @@ Whilst the `TagsSidebarView` is being instanciated within the `TagsSidebarContro
 
 
 ## About the Publish/Subscribe pattern
+[Chaplin-docs](https://github.com/chaplinjs/chaplin/blob/master/README.md#mediator-and-publishsubscribe).
+
 An example is the click event on the Tags list. The tag list does not repondo to routing, but clicking on the links publishes an event on witch the 2 main views are both subscribed (see: publish/subscribe section). In this way, the result will be different depending on which is the active view.
 ```
 # in /coffee/views/tags_sidebar_view.coffee
