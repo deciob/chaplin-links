@@ -7,8 +7,9 @@
 * [Background and motivations](#background-and-motivations)
 * [About Controllers](#about-controllers)
 * [About rendering Collection lists](#rendering-collection-lists)
-* [About Publish/Subscribe](#about-publishsubscribe)
+* [About the Publish/Subscribe pattern](#about-the-publishsubscribe-pattern)
 * [About rendering filtered collections](#about-rendering-filtered-collections)
+* [Conclusions](#conclusions)
 
 ## Key Features
 This is a very simple bookmark application (mostly coded over 2 weekends). With it, one can bookmark links and filter them by tags. Links and Tags are 2 independent models-collections within the application, the only connection between the two being the Link model having a Tags attribute. It relies on a node-express server and a mongodb database on the back-end. The initial file structure and code is copied from [chaplin-boilerplate] (https://github.com/chaplinjs/chaplin-boilerplate).
@@ -56,6 +57,7 @@ As a general advice to start playing with Chaplin I would suggest:
 * Look into the source code if not sure about something.
 
 ## About Controllers
+See [Chaplin-docs](https://github.com/chaplinjs/chaplin/blob/master/README.md#controllers)
 In my opinion Controllers are fundamental to understanding the Chaplin architecture and a good way to think about them is visually:
 
 ![overview](https://raw.github.com/deciob/chaplin-links/master/img/controllers_layout_b.png)
@@ -87,7 +89,7 @@ This is all one needs to render the list. The `TagsSidebarView` template (`tags_
 Whilst the `TagsSidebarView` is being instanciated within the `TagsSidebarController` with a `Tags` collection, the `TagView` is instanciated once per every model instance.
 
 
-## About Publish/Subscribe
+## About the Publish/Subscribe pattern
 An example is the click event on the Tags list. The tag list does not repondo to routing, but clicking on the links publishes an event on witch the 2 main views are both subscribed (see: publish/subscribe section). In this way, the result will be different depending on which is the active view.
 ```
 # in /coffee/views/tags_sidebar_view.coffee
@@ -120,3 +122,6 @@ filterByCurrentTag: (link, idx) =>
 ```
 All is needed is to call the `CollectionView` method `@filter` with a filter function and Chaplin does everything for you!
 
+
+## Conclusions
+This application is the result of two weekends passed learning Chaplin, and it is nothing more than this: a useful play to get started. Some parts might as well have been implemented in the wrong way and others have consciously not been taken into consideration (for example possible caching strategies). But it is enough to say that I am looking forward to build something more complex with Chaplin!
