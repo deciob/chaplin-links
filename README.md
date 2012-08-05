@@ -1,7 +1,7 @@
 chaplin-links
 =============
 
-## An application built for learning how to use [Chaplinjs] (https://github.com/chaplinjs)
+#### An application built for learning how to use [Chaplinjs] (https://github.com/chaplinjs)
 
 ### What does it do:
 * Bookmark a link with tags.
