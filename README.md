@@ -63,6 +63,6 @@ And one main controller, responsible for the edit-links and read-links pages:
 ## Rendering Collection lists
 This is something easily achieved with Chaplin. As an example lets look at the tags list rendering. 
 From `tags_sidebar_view.coffee`:
-*```
+```
 listSelector: 'ul'
 ```
