@@ -53,8 +53,12 @@ In my opinion Controllers are fundamental to understanding the Chaplin architect
 ![overview](https://raw.github.com/deciob/chaplin-links/master/img/controllers_layout_b.png)
 
 The application has two "special controllers" that do not respond to route changes and that get instanciated in coffee/chaplin_links_application.coffee:
+
 * `coffee/controllers/head_nav_controller.coffee`
 * `coffee/controllers/tags_sidebar_controller.coffee`
+
 And one main controller, responsible for the edit-links and read-links pages:
 * `coffee/controllers/links_controller.coffee`
+
+## Rendering Collection lists
 
