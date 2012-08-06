@@ -50,9 +50,9 @@ My goal was to learn Chaplin. I am not totally new to the JavaScript MV* hype an
 
 To introduce myself to Chaplin I started from [backbone](http://backbonejs.org/). A weekend full of source code, blog posts and tutorials, and some frustration... so many ways of doing the same thing! I needed some good pragmatic guidance! So, the weekend after, with not much enthusiasm, I dropped backbone for Chaplin and...
 
-... beautiful surprise! After reading the presentation once more and some good poking into the source code and example applications, I had this learning application up and running and  having fun with it! Chaplin is definitely worth a try!
+... beautiful surprise! After reading the presentation once more and some poking into the source code and example applications, I had this learning application up and running and  having fun with it! Chaplin is definitely worth a try!
 
-My advice for anyone wanting to learn:
+My advice for someone wanting to start with Chaplin:
 * Try backbone, understand models and collections, and do not despair if things look confused (Chaplin is here to help).
 * Read [Chaplin](https://github.com/chaplinjs/chaplin/blob/master/README.md)'s excellent introduction.
 * Use [chaplin-boilerplate] (https://github.com/chaplinjs/chaplin-boilerplate) and [facebook-example] (https://github.com/chaplinjs/facebook-example) as starting points.
