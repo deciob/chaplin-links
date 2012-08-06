@@ -1,5 +1,5 @@
 # chaplin-links
-### An application built for learning how to use [Chaplinjs] (https://github.com/chaplinjs)
+### A bookmarks application built for learning how to use [Chaplinjs] (https://github.com/chaplinjs)
 
 * [Key Features](#key-features)
 * [Requirements](#requirements)
@@ -44,17 +44,17 @@ coffee --bare --output js/ coffee/
 ```
 
 ## Background and motivations
-My goal is to learn Chaplin. I am not totally new to the JavaScript MV* hype and have built a couple of fairly complex one page JavaScript applications using spinejs. I have been flirting with backbone for some time now, curious about its popularity, but never got to try it out until... Chaplin came along...
+My goal was to learn Chaplin. I am not totally new to the JavaScript MV* hype and have built a couple of complex one page JavaScript applications using spinejs, but nothing more.
 
-Started from backbone. My first weekend though, full of source code, blog posts and tutorials, was one of frustration... so many ways of doing the same thing! Beautiful, but also so frustrating. I needed some good pragmatic guidance! After 2 days, I had very little working code and no real understanding about what was good. So, the weekend after, with not much enthusiasm left, I dropped backbone for Chaplin and...
+To introduce myself to Chaplin I started from backbone. A weekend full of source code, blog posts and tutorials, and some frustration... so many ways of doing the same thing! I needed some good pragmatic guidance! So, the weekend after, with not much enthusiasm, I dropped backbone for Chaplin and...
 
-... beautiful surprise! After reading the presentation once more and some good poking into the source code and example applications, I had this learning application up and running and, most important, I was having fun building it!
+... beautiful surprise! After reading the presentation once more and some good poking into the source code and example applications, I had this learning application up and running and  having fun with it! Chaplin is definitely worth a try!
 
-As a general advice to start playing with Chaplin I would suggest:
-* Try some backbone, understand models and collections, and do not despair if things look confused.
-* Read the excellent [Chaplin README](https://github.com/chaplinjs/chaplin/blob/master/README.md) introduction.
+My advice for anyone wanting to learn:
+* Try backbone, understand models and collections, and do not despair if things look confused (Chaplin is here to help).
+* Read [Chaplin](https://github.com/chaplinjs/chaplin/blob/master/README.md)'s excellent introduction.
 * Use [chaplin-boilerplate] (https://github.com/chaplinjs/chaplin-boilerplate) and [facebook-example] (https://github.com/chaplinjs/facebook-example) as starting points.
-* Look into the source code if not sure about something.
+* Look back to the source code (both chaplin and backbone) if things still look unclear.
 
 ## About Controllers
 [Chaplin-docs](https://github.com/chaplinjs/chaplin/blob/master/README.md#controllers).
@@ -127,4 +127,4 @@ All is needed is to call the `CollectionView` method `@filter` with a filter fun
 
 
 ## Conclusions
-This application is the result of two weekends passed learning Chaplin, and it is nothing more than this: a useful play to get started. Some parts might as well have been implemented in the wrong way and others have consciously not been taken into consideration (for example possible caching strategies). But it is enough to say that I am looking forward to build something more complex with Chaplin!
+This application is the result of two weekends passed learning Chaplin, and it is nothing more than this: a useful play to get started. Some parts might as well have been implemented in the wrong way and others have consciously been avoided (for example possible caching strategies). Nevertheless, I think that as a starting point it has been useful. 
