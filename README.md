@@ -21,6 +21,8 @@ Condensed in one statement one would say... far too simple for a Chaplin archite
 
 ## How to run
 ```
+# Assuming you have a node environment and a mongodb database correctly set-up:
+
 # Clone the repo into your home directory (or wherever you want...)
 cd
 git@github.com:deciob/chaplin-links.git
