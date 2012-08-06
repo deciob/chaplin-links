@@ -125,7 +125,7 @@ filterByCurrentTag: (link, idx) =>
     intersection = _.intersection(current_tag, link_tags)
     if intersection.length > 0 then link else no
 ```
-All is needed is to call the `CollectionView` method `@filter` with a filter function and Chaplin does everything for you!
+All is needed is to call the `@filter` method from the `CollectionView` class (parent class of `LinksView`) with a filter function and Chaplin does everything for you!
 
 
 ## Conclusions
