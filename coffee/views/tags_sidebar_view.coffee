@@ -21,7 +21,6 @@ define [
     # Automatically append to the DOM on render
     container: '#tags-section'
 
-    ### subview related ###
     className: 'sidebar'
     # This is not directly a list but contains a list
     tagName: 'div' 

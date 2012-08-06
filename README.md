@@ -95,7 +95,7 @@ Whilst the `TagsSidebarView` is being instanciated within the `TagsSidebarContro
 ## About the Publish/Subscribe pattern
 [Chaplin-docs](https://github.com/chaplinjs/chaplin/blob/master/README.md#mediator-and-publishsubscribe).
 
-An example is the click event on the Tags list. The tag list does not repondo to routing, but clicking on the links publishes an event on witch the 2 main views are both subscribed (see: publish/subscribe section). In this way, the result will be different depending on which is the active view.
+Because of its power and simplicity it is extensively used across the application. An example is the click event on the Tags list. The tag list does not repondo to routing, but clicking on the links publishes an event on witch the 2 main views are both subscribed (see: publish/subscribe section). In this way, the result will be different depending on which is the active view.
 ```
 # in /coffee/views/tags_sidebar_view.coffee
 mediator.publish 'TagsSidebarView:tagClicked', tag_name

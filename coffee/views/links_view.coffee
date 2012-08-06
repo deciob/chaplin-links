@@ -24,7 +24,6 @@ define [
     # Automatically render after initialize
     #autoRender: true
 
-    ### collection related ###
     className: 'links'
     # This is not directly a list but contains a list
     tagName: 'div' 
