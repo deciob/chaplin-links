@@ -88,7 +88,7 @@ listSelector: 'ul'
     # Instantiate an item view
     new TagView model: item
 ```
-This is all to render a list from a collection. The `TagsSidebarView` template (`tags_sidebar.hbs`) will have a `<ul></ul>` placeholder that will be filled by the `TagView` template (`tag.hbs`).
+This is all it's needed to render a list from a collection. The `TagsSidebarView` template (`tags_sidebar.hbs`) will have a `<ul></ul>` placeholder that will be filled by the `TagView` template (`tag.hbs`).
 Whilst the `TagsSidebarView` is being instanciated within the `TagsSidebarController` with a `Tags` collection, the `TagView` is instanciated once per every model instance.
 
 
