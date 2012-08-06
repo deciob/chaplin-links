@@ -129,4 +129,4 @@ All is needed is to call the `@filter` method from the `CollectionView` class (p
 
 
 ## Conclusions
-This application is the result of two weekends passed learning Chaplin, and it is nothing more than this: a useful play to get started. Some parts might as well have been implemented in the wrong way and others have consciously been avoided (for example possible caching strategies). Nevertheless, I think that as a starting point it has been useful. 
+This application is the result of two weekends passed learning Chaplin, and it is nothing more than this: a useful play to get started. Some parts might as well have been implemented in the wrong way and others have consciously been avoided (for example possible caching strategies). Nevertheless, a useful starting point. 
