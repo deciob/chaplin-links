@@ -37,7 +37,7 @@ npm install .
 # Edit connection_string_template.js to point to your mongodb database
 # and save the file as connection_string.js
 
-# Runserver and go to localhost:3000
+# Run the server and go to localhost:3000
 node app.js
 
 # To compile coffee changes to js
@@ -46,9 +46,9 @@ coffee --bare --output js/ coffee/
 ```
 
 ## Background and motivations
-My goal was to learn Chaplin. I am not totally new to the JavaScript MV* hype and have built a couple of complex one page JavaScript applications using spinejs, but nothing more.
+My goal was to learn Chaplin. I am not totally new to the JavaScript MV* hype and have built a couple of complex one page JavaScript applications using [spine](http://spinejs.com/), but nothing more.
 
-To introduce myself to Chaplin I started from backbone. A weekend full of source code, blog posts and tutorials, and some frustration... so many ways of doing the same thing! I needed some good pragmatic guidance! So, the weekend after, with not much enthusiasm, I dropped backbone for Chaplin and...
+To introduce myself to Chaplin I started from [backbone](http://backbonejs.org/). A weekend full of source code, blog posts and tutorials, and some frustration... so many ways of doing the same thing! I needed some good pragmatic guidance! So, the weekend after, with not much enthusiasm, I dropped backbone for Chaplin and...
 
 ... beautiful surprise! After reading the presentation once more and some good poking into the source code and example applications, I had this learning application up and running and  having fun with it! Chaplin is definitely worth a try!
 
