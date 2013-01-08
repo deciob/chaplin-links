@@ -10,7 +10,7 @@ var application_root = __dirname,
   mongoose = require('mongoose'),
   connection_string = require('./connection_string');
 
-var app = express.createServer();
+var app = express();
 
 // model
 mongoose.connect(connection_string);
