@@ -31,7 +31,8 @@ define(['tooltip', 'chaplin', 'syphon', 'views/base/view', 'models/link', 'text!
       SaveLinksView.__super__.initialize.apply(this, arguments);
       this.subscribeEvent('TagsSidebarView:tagClicked', this.addTag);
       this.subscribeEvent('startupController', this.setupTooltips);
-      return this.delegate('submit', 'form', this.saveLink);
+      this.delegate('submit', 'form', this.saveLink);
+      return this.modelBind('sync', this.linkAdded);
     };
 
     SaveLinksView.prototype.saveLink = function(e) {
@@ -44,9 +45,9 @@ define(['tooltip', 'chaplin', 'syphon', 'views/base/view', 'models/link', 'text!
         url: data.url,
         tags: tag_list
       });
-      mediator.publish('tags:add', tag_list);
+      link.save();
       this.collection.add(link);
-      return link.save().done(this.linkAdded);
+      return mediator.publish('tags:add', tag_list);
     };
 
     SaveLinksView.prototype.linkAdded = function(item, collection, options) {

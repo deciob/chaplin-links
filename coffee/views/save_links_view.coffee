@@ -32,7 +32,7 @@ define [
       @subscribeEvent 'TagsSidebarView:tagClicked', @addTag
       @subscribeEvent 'startupController', @setupTooltips
       @delegate 'submit', 'form', @saveLink
-      #@modelBind 'save', @linkAdded
+      @modelBind 'sync', @linkAdded
 
     # TODO: check for duplicates, validation on url, no difference upper-lower case
     saveLink: (e) ->
@@ -42,13 +42,12 @@ define [
       # TODO: does the regex work as expected?
       tag_list = data.tags.replace(/^\s+|\s+$/g, "").split ","
       link = new Link( url: data.url, tags: tag_list )
-      mediator.publish 'tags:add', tag_list
+      link.save()
       @collection.add(link)
-      # using `$.Deferred` `done` method
-      link.save().done @linkAdded
+      mediator.publish 'tags:add', tag_list
 
     linkAdded: (item, collection, options = {}) =>
-      #console.log 'SaveLinksView:linkAdded', @collection
+      #console.log 'SaveLinksView:linkAdded',item, collection
       mediator.publish '!router:route', 'links'
 
     addTag: (tag_name) ->

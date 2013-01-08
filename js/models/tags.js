@@ -16,6 +16,8 @@ define(['chaplin', 'models/base/collection', 'models/tag'], function(Chaplin, Co
       return Tags.__super__.constructor.apply(this, arguments);
     }
 
+    _(Tags.prototype).extend(Chaplin.SyncMachine);
+
     Tags.prototype.model = Tag;
 
     Tags.prototype.url = '/api/tags';
@@ -26,7 +28,6 @@ define(['chaplin', 'models/base/collection', 'models/tag'], function(Chaplin, Co
 
     Tags.prototype.initialize = function(attributes, options) {
       Tags.__super__.initialize.apply(this, arguments);
-      this.initSyncMachine();
       this.beginSync();
       return this.fetch().done(this.go);
     };

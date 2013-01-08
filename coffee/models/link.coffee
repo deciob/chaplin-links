@@ -14,4 +14,3 @@ define [
     initialize: (attributes, options) ->
       super
       #console.debug 'HelloWorld#initialize'
-      @initSyncMachine()

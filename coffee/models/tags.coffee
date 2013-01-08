@@ -7,6 +7,9 @@ define [
 
   class Tags extends Collection
 
+    # Mixin a SyncMachine
+    _(@prototype).extend Chaplin.SyncMachine
+
     model: Tag
 
     url: '/api/tags'
@@ -17,7 +20,6 @@ define [
     initialize: (attributes, options) ->
       super
       #console.debug 'Tags#initialize'
-      @initSyncMachine()
       @beginSync()
 
       # state: unsynced

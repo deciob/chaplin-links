@@ -9,6 +9,9 @@ define [
 
   class Links extends Collection
 
+    # Mixin a SyncMachine
+    #_(@prototype).extend Chaplin.SyncMachine
+
     model: Link
     url: '/api/links'
 
@@ -20,7 +23,6 @@ define [
     initialize: (attributes, options) ->
       super
       #console.debug 'Links#initialize', attributes, options
-      @initSyncMachine()
       @fetch()
 
       

@@ -25,7 +25,6 @@ define(['chaplin', 'models/base/collection', 'models/link'], function(Chaplin, C
 
     Links.prototype.initialize = function(attributes, options) {
       Links.__super__.initialize.apply(this, arguments);
-      this.initSyncMachine();
       return this.fetch();
     };
 
