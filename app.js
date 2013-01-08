@@ -111,6 +111,8 @@ app.post('/api/link', function(req, res){
           link.save(function(err) {
             if (!err) {
               return console.log("created");
+            } else {
+              console.log(err);
             }
           });
           return res.send(link);
