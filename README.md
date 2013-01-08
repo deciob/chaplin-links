@@ -24,28 +24,28 @@ Condensed in one statement one would say... far too simple for a Chaplin archite
 # Assuming you have a node environment and a mongodb database correctly set-up:
 
 # Clone the repo into your home directory (or wherever you want...)
-`git clone git@github.com:deciob/chaplin-links.git`
-`cd ~/chaplin-links`
+git clone git@github.com:deciob/chaplin-links.git
+cd ~/chaplin-links
 
 # Setup the node environment
-`. ~/nvm/nvm.sh && nvm use v0.9.3`
+. ~/nvm/nvm.sh && nvm use v0.9.3
 
 # If no coffeescript
-`sudo npm install -g coffee`
+sudo npm install -g coffee
 
 # Install server dependencies
-`npm install .`
+npm install .
 
 # Edit connection_string_template.js to point to your mongodb database
 # and save the file as connection_string.js
 
 # Run the server and go to localhost:3000
-`node app.js`
+node app.js
 
 # To compile coffee changes to js
-`coffee --bare --output js/ coffee/ `
+coffee --bare --output js/ coffee/ 
 # or run the Cakefile
-`cake watch`
+cake watch
 
 
 ```
