@@ -48,6 +48,7 @@ define [
       link.save().done @linkAdded
 
     linkAdded: (item, collection, options = {}) =>
+      #console.log 'SaveLinksView:linkAdded', @collection
       mediator.publish '!router:route', 'links'
 
     addTag: (tag_name) ->
